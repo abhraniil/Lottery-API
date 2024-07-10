@@ -1,0 +1,54 @@
+openapi: 3.0.1
+info:
+  title: Lottery Ticket Status API
+  description: API for checking status of lottery tickets
+  version: 1.0.0
+paths:
+  /status/{id}:
+    put:
+      summary: Check ticket status by ID
+      description: Endpoint to check the status of a specific lottery ticket by its ID.
+      operationId: getTicketStatus
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Ticket status checked successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+        '404':
+          description: Ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Ticket:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        lines:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+          example: [[0, 1, 1], [2, 2, 0], [1, 0, 2]]
+    ErrorResponse:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: L1001
+        errorMessage:
+          type: string
+          example: Ticket not found

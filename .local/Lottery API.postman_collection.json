@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "50a33b55-d2e5-4bf6-a3d1-bee47cbf847f",
+		"name": "Lottery API",
+		"description": "Operations related to the lottery system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12673014"
+	},
+	"item": [
+		{
+			"name": "Create Ticket",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"lines\": 3}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ticket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket"
+					]
+				},
+				"description": "Create a new ticket with specified number of lines"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Tickets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ticket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket"
+					]
+				},
+				"description": "Get all tickets"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ticket by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ticket/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket",
+						"1"
+					]
+				},
+				"description": "Get a ticket by its ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Amend Ticket",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"lines\": 2}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ticket/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ticket",
+						"1"
+					]
+				},
+				"description": "Amend a ticket with additional lines"
+			},
+			"response": []
+		},
+		{
+			"name": "Check Ticket Status",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/status/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"status",
+						"1"
+					]
+				},
+				"description": "Check the status of a ticket"
+			},
+			"response": []
+		}
+	]
+}

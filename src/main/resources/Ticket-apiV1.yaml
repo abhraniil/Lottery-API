@@ -1,0 +1,97 @@
+openapi: 3.0.1
+info:
+  title: Ticket API
+  description: API for managing tickets
+  version: 1.0.0
+paths:
+  /ticket:
+    post:
+      summary: Create a new ticket
+      operationId: createTicket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrAmendTicketRequest'
+      responses:
+        '200':
+          description: Ticket created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+    get:
+      summary: Get all tickets
+      operationId: getAllTickets
+      responses:
+        '200':
+          description: List of tickets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticket'
+
+  /ticket/{id}:
+    get:
+      summary: Get ticket by ID
+      operationId: getTicketById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Ticket details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+    put:
+      summary: Amend a ticket
+      operationId: amendTicket
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrAmendTicketRequest'
+      responses:
+        '200':
+          description: Ticket amended successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+
+components:
+  schemas:
+    CreateOrAmendTicketRequest:
+      type: object
+      properties:
+        lines:
+          type: integer
+          example: 3
+    Ticket:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        lines:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+          example: [[0, 1, 1], [2, 2, 0], [1, 0, 2]]
